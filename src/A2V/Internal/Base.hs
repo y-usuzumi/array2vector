@@ -12,7 +12,8 @@ import           Unsafe.Coerce
 data A2VArray i e = A2VArray
                     !i
                     !i
-                    {-# UNPACK #-}!Int (Array# e)
+                    {-# UNPACK #-}!Int
+                    (Array# e)
 
 data A2VPrimArray a = A2VPrimArray { myArray# :: Array# a }
 
@@ -26,8 +27,17 @@ data A2VVector a = A2VVector
 unsafeArrayToA2VArray :: Array i e -> A2VArray i e
 unsafeArrayToA2VArray = unsafeCoerce
 
+unsafeA2VArrayToArray :: A2VArray i e -> Array i e
+unsafeA2VArrayToArray = unsafeCoerce
+
 unsafeA2VVectorToVector :: A2VVector a -> Vector a
 unsafeA2VVectorToVector = unsafeCoerce
 
+unsafeVectorToA2VVector :: Vector a -> A2VVector a
+unsafeVectorToA2VVector = unsafeCoerce
+
 unsafeA2VPrimArrayToPrimArray :: A2VPrimArray a -> PrimArray.Array a
 unsafeA2VPrimArrayToPrimArray = unsafeCoerce
+
+unsafePrimArrayToA2VPrimArray :: PrimArray.Array a -> A2VPrimArray a
+unsafePrimArrayToA2VPrimArray = unsafeCoerce
