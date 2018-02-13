@@ -6,10 +6,14 @@ import           Test.Tasty.HUnit
 
 allTests :: TestTree
 allTests = testGroup "All tests"
-  [ testCase "Conversion" $ do
+  [ testCase "Int array" $ do
       let arr = A.listArray (0, 9) [1..10]
-          vec = AC.toVector arr
-      V.fromList [1..10] @=? vec
+          vec = V.fromList [1..10]
+      vec @=? AC.toVector arr
+  , testCase "String array" $ do
+      let arr = A.listArray (1, 3) ["Hello", "world", "!"]
+          vec = V.fromList ["Hello", "world", "!"]
+      vec @=? AC.toVector arr
   ]
 
 
