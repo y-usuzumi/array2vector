@@ -11,6 +11,6 @@ import qualified Data.Vector as V
 
 main = do
   let arr = A.listArray (1, 3) ["Hello", "world", "!"]
-  let vec = V.fromList ["Hello", "world", "!"]
+      vec = V.fromList ["Hello", "world", "!"]
   print $ toVector arr == vec  -- True
 ```
